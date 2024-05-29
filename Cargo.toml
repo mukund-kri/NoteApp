@@ -1,0 +1,11 @@
+[package]
+name = "notes"
+version = "0.1.0"
+edition = "2021"
+
+description = "Digitize my paper notes"
+
+[dependencies]
+iced = { version = "0.12.1", features = ["image"] }
+image = "0.25"
+regex = "1.10"
