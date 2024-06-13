@@ -111,7 +111,5 @@ impl Sandbox for NoteApp {
 }
 
 fn main() -> ICEDResult {
-    println!("Hello, world!");
-
     NoteApp::run(Settings::default())
 }

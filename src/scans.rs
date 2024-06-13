@@ -1,12 +1,8 @@
-use std::{
-    error::Error,
-    fmt::Display,
-    fs::DirEntry,
-    path::{Path, PathBuf},
-};
-
 use crate::actions::NoteDate;
+use std::fs;
+use std::{error::Error, fmt::Display, fs::DirEntry, path::PathBuf};
 
+// const SCAN_DIR: &str = r"/run/user/1000/gvfs/mtp:host=Xiaomi_22127PC95I_5d9pkrcmpbpzvgs4/Internal shared storage/Android/data/com.indymobileapp.document.scanner/files/ClearScanner";
 const SCAN_DIR: &str = "/home/mukund/computer/data/ClearScanner";
 const NOTES_DIR: &str = "/home/mukund/notes";
 
@@ -114,8 +110,10 @@ impl Scan {
         let source = self.to_path().join("result.jpg");
         let target = note_path.join("result.jpg");
         println!("source: {:?}", source);
-        // move source to target
-        std::fs::rename(source, target).map_err(|_| PostError)?;
+
+        // move source to target. Coping and then deleting as source and target are on different
+        // filesystems
+        fs::copy(source, target).map_err(|_| PostError)?;
 
         // Delete the scan directory
         self.delete().map_err(|_| PostError)
