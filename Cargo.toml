@@ -9,3 +9,8 @@ description = "Digitize my paper notes"
 iced = { version = "0.12.1", features = ["image"] }
 image = "0.25"
 regex = "1.10"
+log = "0.4"
+env_logger = "0.11"
+serde = { version = "1.0" }
+serde_derive = "1.0"
+config = "0.14"
